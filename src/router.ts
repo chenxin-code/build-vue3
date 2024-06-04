@@ -3,7 +3,26 @@ import {createRouter, createWebHistory, createWebHashHistory, createMemoryHistor
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
-        { path: '/defer', component: () => import('./page/defer.vue') },
+        // 首页
+        {
+            path: '/',
+            redirect: '/demo',
+        },
+        {
+            path: '/defer',
+            component: () => import('./page/defer.vue'),
+        },
+        {
+            path: '/demo',
+            component: () => import('./page/demo/index.vue'),
+            // 嵌套路由
+            children: [
+                {
+                    path: 'group-order',
+                    component: () => import('./page/demo/group-order.vue'),
+                },
+            ],
+        },
     ]
 });
 
