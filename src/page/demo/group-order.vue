@@ -29,6 +29,12 @@
         :label="item.label"
         :key="index"/>
   </el-popover>
+  <el-alert
+      :description="'升序：' + asc + ' 降序：' + desc"
+      type="success"
+      :closable="false"
+      center
+      style="margin-top: 10px;width: 500px"/>
 </template>
 
 <script lang="ts" setup>
@@ -44,8 +50,10 @@ const groupSelectOption = ref([
   {label: '字段f', value: 'f', flag: true},
   {label: '字段g', value: 'g', flag: true},
 ]);
-const groupTag = ref([groupSelectOption.value[0]]);
-const tempGroupTag = ref([groupSelectOption.value[0]]);
+const groupTag = ref([]);
+const tempGroupTag = ref([]);
+groupTag.value.push(groupSelectOption.value[0]);//初始化赋值
+tempGroupTag.value.push(groupSelectOption.value[0]);//初始化赋值
 const checkboxChange = (value, item) => {
   if (value) {
     tempGroupTag.value.push(item);
@@ -57,19 +65,21 @@ const checkboxChange = (value, item) => {
     });
   }
 };
+const asc = ref('');
+const desc = ref('');
 const getDataList = () => {
-  let asc = '';
-  let desc = '';
+  asc.value = '';
+  desc.value = '';
   groupTag.value.forEach((item) => {
     if (item.flag) {
-      desc += item.value + ',';
+      desc.value += item.value + ',';
     } else {
-      asc += item.value + ',';
+      asc.value += item.value + ',';
     }
   });
-  asc = asc.slice(0, -1);
-  desc = desc.slice(0, -1);
-  console.log('asc:', asc, 'desc:', desc);
+  asc.value = asc.value.slice(0, -1);
+  desc.value = desc.value.slice(0, -1);
+  //console.log('asc:', asc.value, 'desc:', desc.value);
 };
 
 watch(
@@ -77,11 +87,11 @@ watch(
     (newValue, oldValue) => {
       //console.log('watch', newValue, oldValue);
       let newValue_ = [];
-      newValue.forEach((item) => {
+      newValue && newValue.forEach((item) => {
         newValue_.push(item.value);
       });
       let oldValue_ = [];
-      oldValue.forEach((item) => {
+      oldValue && oldValue.forEach((item) => {
         oldValue_.push(item.value);
       });
       if (newValue_.length !== oldValue_.length || !newValue_.filter(t => !oldValue_.includes(t))) {
@@ -90,7 +100,8 @@ watch(
       } else {
         //console.log('我们都一样');
       }
-    }
+    },
+    {immediate: true}//初始化立即执行
 );
 </script>
 
