@@ -2,7 +2,9 @@ import {createRouter, createWebHistory, createWebHashHistory, createMemoryHistor
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes: []
+    routes: [
+        { path: '/defer', component: () => import('./page/defer.vue') },
+    ]
 });
 
 export default router;
