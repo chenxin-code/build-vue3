@@ -21,6 +21,10 @@ const router = createRouter({
                     path: 'group-order',
                     component: () => import('./page/demo/group-order.vue'),
                 },
+                {
+                    path: 'print-exportPDF',
+                    component: () => import('./page/demo/print-exportPDF.vue'),
+                },
             ],
         },
     ]
