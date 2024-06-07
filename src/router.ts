@@ -25,6 +25,10 @@ const router = createRouter({
                     path: 'print-exportPDF',
                     component: () => import('./page/demo/print-exportPDF.vue'),
                 },
+                {
+                    path: 'Avue-Crud',
+                    component: () => import('./page/demo/Avue-Crud.vue'),
+                },
             ],
         },
     ]

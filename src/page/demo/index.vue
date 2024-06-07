@@ -22,6 +22,7 @@ import {ref} from 'vue';
 const demoIndex = ref([
   {title: '分组排序', path: 'group-order'},
   {title: '打印/导出PDF', path: 'print-exportPDF'},
+  {title: 'Avue-Crud组件', path: 'Avue-Crud'},
 ]);
 </script>
 

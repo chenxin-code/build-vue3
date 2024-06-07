@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@smallwei/avue": "^3.4.4",
     "axios": "^1.7.2",
     "element-plus": "^2.7.4",
     "html2canvas": "^1.4.1",
