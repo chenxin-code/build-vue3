@@ -3,12 +3,12 @@
   <el-button :icon="Printer" @click="print()">打印</el-button>
   <el-button :icon="Download" @click="exportPDF()">导出PDF</el-button>
   <el-dialog :model-value="false" width="50%" append-to-body>
-    <div class="a4-size" style="position: relative; margin-bottom: 1.2em" contenteditable="true">
+    <div class="a4-size" style="position: relative;margin-bottom: 1.2em" contenteditable="true">
       <div class="title"
-           style="font-size: 32px;text-align: center;position: relative; font-family: 'Microsoft Sans Serif', sans-serif;">
+           style="font-size: 32px;text-align: center;position: relative;font-family: 'Microsoft Sans Serif', sans-serif;">
         销&nbsp;&nbsp;&nbsp; 售&nbsp;&nbsp;&nbsp; 合&nbsp;&nbsp;&nbsp; 同
       </div>
-      <div style="position: absolute;top:0.2em;font-size: 24px;">MEIJOY GROUP</div>
+      <div style="position: absolute;top: 0.2em;font-size: 24px;">MEIJOY GROUP</div>
       <div style="font-size: 13px;margin-top: 1em;">
         <div class="width25">签约时间: <span contenteditable="true">{{ form.billDate }} </span></div>
         <div class="width25">签约地点: <span contenteditable="true">广州</span></div>
@@ -171,14 +171,14 @@
       </div>
     </div>
   </el-dialog>
-  <div style="display: none;">
+  <div style="display: none">
     <div id="printPage">
-      <div class="a4-size" style="position: relative; margin-bottom: 1.2em">
+      <div class="a4-size" style="position: relative;margin-bottom: 1.2em">
         <div class="title"
-             style="font-size: 32px;text-align: center;position: relative; font-family: 'Microsoft Sans Serif', sans-serif;">
+             style="font-size: 32px;text-align: center;position: relative;font-family: 'Microsoft Sans Serif', sans-serif;">
           销&nbsp;&nbsp;&nbsp; 售&nbsp;&nbsp;&nbsp; 合&nbsp;&nbsp;&nbsp; 同
         </div>
-        <div style="position: absolute;top:0.2em;font-size: 24px;">MEIJOY GROUP</div>
+        <div style="position: absolute;top: 0.2em;font-size: 24px;">MEIJOY GROUP</div>
         <div style="font-size: 13px;margin-top: 1em;">
           <div class="width25">签约时间: <span>{{ form.billDate }} </span></div>
           <div class="width25">签约地点: <span>{{ '广州' }} </span></div>
@@ -343,12 +343,12 @@
   </div>
   <div class="print">
     <div ref="PDF" class="a4-size2">
-      <div class="a4-size" style="position: relative; margin-bottom: 1.2em;">
+      <div class="a4-size" style="position: relative;margin-bottom: 1.2em;">
         <div class="title"
-             style="font-size: 32px;text-align: center;position: relative; font-family: 'Microsoft Sans Serif', sans-serif;">
+             style="font-size: 32px;text-align: center;position: relative;font-family: 'Microsoft Sans Serif', sans-serif;">
           销&nbsp;&nbsp;&nbsp; 售&nbsp;&nbsp;&nbsp; 合&nbsp;&nbsp;&nbsp; 同
         </div>
-        <div style="position: absolute;top:0.2em;font-size: 24px;">MEIJOY GROUP</div>
+        <div style="position: absolute;top: 0.2em;font-size: 24px;">MEIJOY GROUP</div>
         <div style="font-size: 13px;margin-top: 1em;">
           <div class="width25">签约时间: <span>{{ form.billDate }} </span></div>
           <div class="width25">签约地点: <span>广州</span></div>
@@ -774,28 +774,10 @@ const print = () => {
               text-align: center;
             }
 
-            .width10 {
-              display: flex;
-              float: left;
-              width: 10%;
-              font-size: 13px;
-            }
             .width11 {
               display: flex;
               float: left;
               width: 11%;
-              font-size: 13px;
-            }
-            .width12 {
-              display: flex;
-              float: left;
-              width: 12%;
-              font-size: 13px;
-            }
-            .width13 {
-              display: flex;
-              float: left;
-              width: 13%;
               font-size: 13px;
             }
             .width20 {
@@ -810,22 +792,10 @@ const print = () => {
               width: 25%;
               font-size: 13px;
             }
-            .width30 {
-              display: flex;
-              float: left;
-              width: 30%;
-              font-size: 13px;
-            }
             .width50 {
               display: flex;
               float: left;
               width: 50%;
-              font-size: 13px;
-            }
-            .width70 {
-              display: flex;
-              float: left;
-              width: 70%;
               font-size: 13px;
             }
             .width80 {
@@ -834,22 +804,10 @@ const print = () => {
               width: 80%;
               font-size: 13px;
             }
-            .width88 {
-              display: flex;
-              float: left;
-              width: 88%;
-              font-size: 13px;
-            }
             .width89 {
               display: flex;
               float: left;
               width: 89%;
-              font-size: 13px;
-            }
-            .width90 {
-              display: flex;
-              float: left;
-              width: 90%;
               font-size: 13px;
             }
             .width100 {
@@ -934,31 +892,10 @@ th, td {
   text-align: center;
 }
 
-.width10 {
-  display: flex;
-  float: left;
-  width: 10%;
-  font-size: 13px;
-}
-
 .width11 {
   display: flex;
   float: left;
   width: 11%;
-  font-size: 13px;
-}
-
-.width12 {
-  display: flex;
-  float: left;
-  width: 12%;
-  font-size: 13px;
-}
-
-.width13 {
-  display: flex;
-  float: left;
-  width: 13%;
   font-size: 13px;
 }
 
@@ -976,24 +913,10 @@ th, td {
   font-size: 13px;
 }
 
-.width30 {
-  display: flex;
-  float: left;
-  width: 30%;
-  font-size: 13px;
-}
-
 .width50 {
   display: flex;
   float: left;
   width: 50%;
-  font-size: 13px;
-}
-
-.width70 {
-  display: flex;
-  float: left;
-  width: 70%;
   font-size: 13px;
 }
 
@@ -1004,24 +927,10 @@ th, td {
   font-size: 13px;
 }
 
-.width88 {
-  display: flex;
-  float: left;
-  width: 88%;
-  font-size: 13px;
-}
-
 .width89 {
   display: flex;
   float: left;
   width: 89%;
-  font-size: 13px;
-}
-
-.width90 {
-  display: flex;
-  float: left;
-  width: 90%;
   font-size: 13px;
 }
 
