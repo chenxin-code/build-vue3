@@ -1,11 +1,11 @@
 <template>
   <div v-for="n in 999" :key="n">
-    <bigContent v-if="useDefer(n)"/>
+    <bigContent1 v-if="useDefer(n)"/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import bigContent from './../component/big-content.vue';
+import bigContent1 from './../component/big-content-1.vue';
 import {defer} from './../toolFunc.ts';
 
 //白屏优化

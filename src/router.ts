@@ -13,6 +13,10 @@ const router = createRouter({
             component: () => import('./page/defer.vue'),
         },
         {
+            path: '/sync-async-component',
+            component: () => import('./page/sync-async-component.vue'),
+        },
+        {
             path: '/demo',
             component: () => import('./page/demo/index.vue'),
             // 嵌套路由
