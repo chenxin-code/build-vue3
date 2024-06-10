@@ -33,6 +33,10 @@ const router = createRouter({
                     path: 'Avue-Crud',
                     component: () => import('./page/demo/Avue-Crud.vue'),
                 },
+                {
+                    path: 'waterFall',
+                    component: () => import('./page/demo/waterFall.vue'),
+                },
             ],
         },
     ]
