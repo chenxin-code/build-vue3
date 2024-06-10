@@ -5,8 +5,8 @@
         :key="index"
         :style="{
         width: width + 'px',
-				height: item.height + 'px',
-				background: item.background,
+				height: getRandomInt() + 'px',
+				background: getRandomColor(),
         position: 'absolute',
 				left: item.left + 'px',
 				top: item.top + 'px'
@@ -91,6 +91,14 @@ const data = ref([
     background: '#CC00FF',
   }
 ]);
+//获取指定整数范围内的随机整数
+const getRandomInt = (start = 100, end = 500) => {
+  return Math.floor(Math.random() * (end - start) + start);
+};
+//获取随机颜色
+const getRandomColor = () => {
+  return `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, '0')}`;
+};
 // 元素宽度
 const width = 120;
 // 元素上下间距
