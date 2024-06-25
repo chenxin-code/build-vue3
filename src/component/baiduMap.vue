@@ -1,6 +1,12 @@
 <template>
-  <el-dialog v-model="showDialog" :title="addressDetail" :destroy-on-close="true" width="60%" append-to-body draggable>
-    经纬度： [{{ lnglat }}]
+  <el-dialog
+      v-model="showDialog"
+      :title="dialogTitle"
+      width="60%"
+      append-to-body
+      draggable
+      destroy-on-close>
+    经纬度：[{{ lnglat }}]
     <div id="container" style="width: 100%; height: 400px; background: #fafafa"/>
   </el-dialog>
 </template>
@@ -10,13 +16,13 @@ import {ref, nextTick, defineExpose} from 'vue';
 import {ElMessage} from 'element-plus';
 
 const showDialog = ref(false);
-const addressDetail = ref('');
+const dialogTitle = ref('');
 const lng = ref('');
 const lat = ref('');
 const lnglat = ref('');
 const init = (coord, address) => {
   showDialog.value = true;
-  addressDetail.value = address;
+  dialogTitle.value = address;
   coord = coord ? coord : '116.404,39.915';
   lnglat.value = coord;
   if (coord) {

@@ -1,16 +1,14 @@
 <template>
-  <div style="height: 600px;display: flex;justify-content: center;align-items: center">
-    <div>
-      <el-autocomplete
-          v-model="address"
-          :fetch-suggestions="fetchSuggestions"
-          @select="(item) => {address = item.value}"
-          clearable
-          style="margin-top: 20px;width: 500px"/>
-      <el-icon @click="onAddress()" v-if="address">
-        <LocationInformation/>
-      </el-icon>
-    </div>
+  <div>
+    <el-autocomplete
+        v-model="address"
+        :fetch-suggestions="fetchSuggestions"
+        @select="(item) => {address = item.value}"
+        clearable
+        style="margin-top: 25px;width: 600px"/>
+    <el-icon style="cursor: pointer" @click="onAddress()" v-if="address">
+      <LocationInformation/>
+    </el-icon>
   </div>
   <baiduMap ref="baiduMapRef" v-if="showBaiduMap"/>
 </template>
