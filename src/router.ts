@@ -37,6 +37,10 @@ const router = createRouter({
                     path: 'waterFall',
                     component: () => import('./page/demo/waterFall.vue'),
                 },
+                {
+                    path: 'baiduMap-search-locate',
+                    component: () => import('./page/demo/baiduMap-search-locate.vue'),
+                },
             ],
         },
     ]

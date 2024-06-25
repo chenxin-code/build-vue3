@@ -24,6 +24,7 @@ const demoIndex = ref([
   {title: '打印/导出PDF', path: 'print-exportPDF'},
   {title: 'Avue-Crud组件', path: 'Avue-Crud'},
   {title: '瀑布流', path: 'waterFall'},
+  {title: '百度地图搜索/定位', path: 'baiduMap-search-locate'},
 ]);
 </script>
 
