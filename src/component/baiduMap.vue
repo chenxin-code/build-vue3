@@ -20,7 +20,7 @@ const dialogTitle = ref('');
 const lng = ref('');
 const lat = ref('');
 const lnglat = ref('');
-const init = (coord, address) => {
+const initMap = (coord, address) => {
   showDialog.value = true;
   dialogTitle.value = address;
   coord = coord ? coord : '116.404,39.915';
@@ -54,9 +54,7 @@ const init = (coord, address) => {
   }
 };
 
-defineExpose({
-  init,
-});
+defineExpose({initMap});
 </script>
 
 <style lang="less" scoped>

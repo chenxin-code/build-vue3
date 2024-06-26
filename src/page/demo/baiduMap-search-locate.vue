@@ -48,7 +48,7 @@ const onAddress = () => {
   showBaiduMap.value = true;
   nextTick(() => {
     if (baiduMapRef.value) {
-      baiduMapRef.value.init(null, address.value);
+      baiduMapRef.value.initMap(null, address.value);
     }
   });
 };
