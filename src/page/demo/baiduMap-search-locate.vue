@@ -6,15 +6,14 @@
         @select="(item) => {address = item.value}"
         clearable
         style="margin-top: 25px;width: 600px"/>
-    <el-icon style="cursor: pointer" @click="onAddress()" v-if="address">
-      <LocationInformation/>
-    </el-icon>
+    <el-button type="primary" :icon="Location" :disabled="!address" style="margin-left: 10px" @click="locate()">定位</el-button>
   </div>
   <baiduMap ref="baiduMapRef" v-if="showBaiduMap"/>
 </template>
 
 <script lang="ts" setup>
 import {ref, nextTick} from 'vue';
+import {Location} from '@element-plus/icons-vue';
 import request from './../../api/baiduMap';
 import baiduMap from './../../component/baiduMap.vue';
 
@@ -44,7 +43,7 @@ const baiduMapRef = ref();
 
 const showBaiduMap = ref(false);
 
-const onAddress = () => {
+const locate = () => {
   showBaiduMap.value = true;
   nextTick(() => {
     if (baiduMapRef.value) {
