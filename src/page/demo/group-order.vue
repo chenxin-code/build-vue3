@@ -16,9 +16,8 @@
   </el-tag>
   <el-popover
       placement="top-start"
-      trigger="click"
-      @show="tempGroupTag = JSON.parse(JSON.stringify(groupTag))"
-      @hide="groupTag = tempGroupTag">
+      @show="console.log('show');tempGroupTag = JSON.parse(JSON.stringify(groupTag))"
+      @hide="console.log('hide');groupTag = tempGroupTag">
     <template #reference>
       <el-button :icon="Setting" style="margin-right: 10px">分组管理</el-button>
     </template>
