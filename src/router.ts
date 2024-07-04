@@ -41,6 +41,10 @@ const router = createRouter({
                     path: 'baiduMap-search-locate',
                     component: () => import('./page/demo/baiduMap-search-locate.vue'),
                 },
+                {
+                    path: 'largeScreenRenderOptimize',
+                    component: () => import('./page/demo/largeScreenRenderOptimize/index.vue'),
+                },
             ],
         },
     ]

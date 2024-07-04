@@ -25,6 +25,7 @@ const demoIndex = ref([
   {title: 'Avue-Crud组件', path: 'Avue-Crud'},
   {title: '瀑布流', path: 'waterFall'},
   {title: '百度地图搜索/定位', path: 'baiduMap-search-locate'},
+  {title: '大屏渲染优化', path: 'largeScreenRenderOptimize'}
 ]);
 </script>
 
