@@ -10,6 +10,10 @@ This template should help get you started developing with Vue 3 and TypeScript i
 
 ## 路由
 
+📖 **/demo**
+
+DEMO展示
+
 📖 **/defer**
 
 requestAnimationFrame 请求动画帧 （白屏优化）
