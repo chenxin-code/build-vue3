@@ -20,3 +20,19 @@ export function defer(maxFrameCount = 999) {
         return frameCount.value >= n;//判断当前渲染帧数是否大于自定义n
     };
 }
+
+// 从数组里选出随机元素
+export function getRandomElementFromArray(arr, num: number){
+    const sData = arr.slice(0);
+    let i = arr.length;
+    const min = i - num;
+    let item;
+    let index;
+    while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        item = sData[index];
+        sData[index] = sData[i];
+        sData[i] = item;
+    }
+    return sData.slice(min);
+}
