@@ -1,20 +1,16 @@
 <template>
-  <div :id="'main' + props.id"/>
+  <div :id="props.id"/>
 </template>
 
 <script lang="ts" setup>
 import {defineProps, onMounted} from 'vue';
-
+import _ from 'lodash';
 import * as echarts from 'echarts';
 
 const props = defineProps(['id']);
 
 onMounted(() => {
-  var chartDom = document.getElementById('main' + props.id);
-  var myChart = echarts.init(chartDom);
-  var option;
-
-  option = {
+  echarts.init(document.getElementById(props.id)).setOption({
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -24,12 +20,10 @@ onMounted(() => {
     },
     series: [
       {
-        data: [120, 200, 150, 80, 70, 110, 130],
+        data: [_.random(10, 30), _.random(10, 30), _.random(10, 30), _.random(10, 30), _.random(10, 30), _.random(10, 30), _.random(10, 30)],
         type: 'bar'
       }
     ]
-  };
-
-  option && myChart.setOption(option);
+  });
 });
 </script>
