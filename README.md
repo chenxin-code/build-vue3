@@ -12,7 +12,7 @@ This template should help get you started developing with Vue 3 and TypeScript i
 
 📖 **/demo**
 
-DEMO展示（分组排序、打印/导出PDF、Avue-Crud组件、瀑布流、百度地图搜索/定位）
+DEMO展示（分组排序、打印/导出PDF、Avue-Crud组件、瀑布流、百度地图搜索/定位、大量图表渲染优化）
 
 📖 **/defer**
 

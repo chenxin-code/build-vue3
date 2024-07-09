@@ -20,8 +20,8 @@
     </div>
   </div>
   <div class="container">
-    <div v-for="n in chartNum" :key="'sunburst-simple' + n">
-      <sunburst-simple :id="'sunburst-simple' + n" v-if="!isOptimize || useDefer(n + chartNum + chartNum + chartNum + chartNum)" style="height: 100%"/>
+    <div v-for="n in chartNum" :key="'scatter-simple' + n">
+      <scatter-simple :id="'scatter-simple' + n" v-if="!isOptimize || useDefer(n + chartNum + chartNum + chartNum + chartNum)" style="height: 100%"/>
     </div>
   </div>
   <div class="container">
@@ -36,7 +36,7 @@ import lineSimple from './chart/line-simple.vue';
 import barSimple from './chart/bar-simple.vue';
 import areaBasic from './chart/area-basic.vue';
 import candlestickSimple from './chart/candlestick-simple.vue';
-import sunburstSimple from './chart/sunburst-simple.vue';
+import scatterSimple from './chart/scatter-simple.vue';
 import gauge from './chart/gauge.vue';
 import {defer} from './../../../toolFunc.ts';
 
