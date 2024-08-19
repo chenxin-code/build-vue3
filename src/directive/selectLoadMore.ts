@@ -8,7 +8,6 @@ export default {
                 binding.value && binding.value();
             }
         };
-
         // 将获取到的dom和函数挂载到el-select上，实例销毁时好处理
         el.selectDomInfo = selectDom;
         el.selectLoadMore = loadMores;
