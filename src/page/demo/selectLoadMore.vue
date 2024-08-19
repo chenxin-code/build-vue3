@@ -46,7 +46,7 @@ const select1LoadMore = () => {
 const select2LoadMore = () => {
   setTimeout(() => {
     _.times(10, () => {
-      select2Option.value.push(_.random(111, 999));
+      select2Option.value.push(_.random(1111, 9999));
     });
   }, 200);
 };
