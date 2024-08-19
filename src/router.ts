@@ -45,6 +45,10 @@ const router = createRouter({
                     path: 'massChartsRenderOptimize',
                     component: () => import('./page/demo/massChartsRenderOptimize/index.vue'),
                 },
+                {
+                    path: 'selectLoadMore',
+                    component: () => import('./page/demo/selectLoadMore.vue'),
+                },
             ],
         },
     ]
