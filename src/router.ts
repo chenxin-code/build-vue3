@@ -49,6 +49,10 @@ const router = createRouter({
                     path: 'selectLoadMore',
                     component: () => import('./page/demo/selectLoadMore.vue'),
                 },
+                {
+                    path: 'solarSystem',
+                    component: () => import('./page/demo/solarSystem.vue'),
+                },
             ],
         },
     ]

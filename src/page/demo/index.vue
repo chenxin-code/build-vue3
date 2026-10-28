@@ -29,6 +29,7 @@ const demoIndex = ref([
   {title: '百度地图搜索/定位', path: 'baiduMap-search-locate'},
   {title: '大量图表渲染优化', path: 'massChartsRenderOptimize'},
   {title: 'el-select 加载更多', path: 'selectLoadMore'},
+  {title: '太阳系', path: 'solarSystem'},
 ]);
 </script>
 
