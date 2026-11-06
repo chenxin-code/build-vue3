@@ -15,8 +15,8 @@
 
 <script lang="ts" setup>
 import {ref, defineAsyncComponent} from 'vue';
-import bigContentSync from './../component/big-content-1.vue'; // 同步组件
-const bigContentAsync = defineAsyncComponent(() => import('./../component/big-content-2.vue'));// 异步组件
+import bigContentSync from './../../component/big-content-1.vue'; // 同步组件
+const bigContentAsync = defineAsyncComponent(() => import('./../../component/big-content-2.vue'));// 异步组件
 
 const showBigContentSync = ref(false);
 const showBigContentAsync = ref(false);

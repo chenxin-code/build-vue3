@@ -40,6 +40,7 @@ const demoIndex = ref([
   {title: '大量图表渲染优化', path: 'massChartsRenderOptimize'},
   {title: 'el-select 加载更多', path: 'selectLoadMore'},
   {title: '太阳系', path: 'solarSystem'},
+  {title: '同步/异步组件测试', path: 'sync-async-component'},
 ]);
 
 const showArrows = ref(false);
@@ -57,7 +58,7 @@ const scrollLeft = () => {
   const buttons = buttonGroup.querySelectorAll('.el-button');
   const currentScroll = tabRow.value.scrollLeft;
   let targetButton: HTMLElement | null = null;
-  
+
   for (let i = 0; i < buttons.length; i++) {
     const btn = buttons[i] as HTMLElement;
     if (btn.offsetLeft < currentScroll) {
@@ -66,7 +67,7 @@ const scrollLeft = () => {
       break;
     }
   }
-  
+
   if (targetButton) {
     tabRow.value.scrollTo({left: targetButton.offsetLeft - 20, behavior: 'smooth'});
   } else {
@@ -82,7 +83,7 @@ const scrollRight = () => {
   const currentScroll = tabRow.value.scrollLeft;
   const rightEdge = currentScroll + tabRow.value.clientWidth;
   let scrollAmount = tabRow.value.scrollWidth;
-  
+
   for (const btn of buttons) {
     const btnEl = btn as HTMLElement;
     if (btnEl.offsetLeft + btnEl.offsetWidth > rightEdge) {
@@ -90,7 +91,7 @@ const scrollRight = () => {
       break;
     }
   }
-  
+
   tabRow.value.scrollTo({
     left: Math.min(scrollAmount, tabRow.value.scrollWidth - tabRow.value.clientWidth),
     behavior: 'smooth'
@@ -128,7 +129,7 @@ onBeforeUnmount(() => {
   color: #606266;
   flex-shrink: 0;
   transition: color 0.2s;
-  
+
   &:hover {
     color: #409eff;
   }
@@ -138,7 +139,7 @@ onBeforeUnmount(() => {
   overflow-x: auto;
   max-width: 80%;
   scrollbar-width: none;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
