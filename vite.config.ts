@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/build-vue3/',
   plugins: [vue()],
   server: {
     port: 888,// 项目运行的端口号
