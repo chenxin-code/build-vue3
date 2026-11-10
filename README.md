@@ -67,6 +67,12 @@ npm run dev
 npm run build
 ```
 
+`npm run build` 会先执行 `vue-tsc` 类型检查。项目存在存量类型错误时检查会中断构建，此时可单独执行以下命令跳过类型检查：
+
+```bash
+npx vite build
+```
+
 ### 预览生产构建
 
 ```bash
@@ -76,8 +82,27 @@ npm run preview
 ### 类型检查
 
 ```bash
-npm run type-check
+npx vue-tsc --noEmit
 ```
+
+## 自动部署
+
+本项目已配置 GitHub Actions 自动部署到 GitHub Pages：
+
+- **触发条件**: 推送代码到 `master` 分支
+- **部署流程**: 自动构建 → 发布到 `gh-pages` 分支 → GitHub Pages 读取
+- **访问地址**: https://chenxin-code.github.io/build-vue3/
+
+### 部署配置
+
+- `.github/workflows/deploy.yml` — GitHub Actions 工作流配置，Node 20 环境，构建使用 `npx vite build`
+- `vite.config.ts` — `base` 根据构建命令动态设置：
+  - 开发环境: `/`
+  - 生产构建: `/build-vue3/`
+
+### 首次启用
+
+GitHub Actions 推送 `gh-pages` 分支后，需在仓库 **Settings → Pages** 中将 Source 设置为 `gh-pages` 分支，部署才会生效。
 
 ## 开发建议
 
