@@ -1,0 +1,1 @@
+import{b as o}from"./big-content-1-BbvdyjIo.js";import{d as s}from"./toolFunc-B5OtuCvc.js";import{d as n,o as t,c,r as m,a as d,u as f,b as u,e as p,F as i}from"./index-DNf0uPdC.js";const y=n({__name:"defer",setup(_){const a=(e=>s(e))();return(e,l)=>(t(),c(i,null,m(999,r=>d("div",{key:r},[f(a)(r)?(t(),u(o,{key:0})):p("",!0)])),64))}});export{y as default};

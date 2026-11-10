@@ -1,1 +1,0 @@
-import{H as o,m as u}from"./index-BKjLuE47.js";function f(r=999){const e=u(0);let n;const a=()=>{e.value++,e.value<r&&(n=requestAnimationFrame(a))};return a(),o(()=>{cancelAnimationFrame(n)}),function(t){return e.value>=t}}export{f as d};

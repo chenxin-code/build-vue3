@@ -1,0 +1,1 @@
+import{_ as c,o,c as t,a}from"./index-DNf0uPdC.js";const n={};function r(s,e){return o(),t("div",null,[...e[0]||(e[0]=[a("p",null,"404",-1)])])}const l=c(n,[["render",r],["__scopeId","data-v-1bf19c1c"]]);export{l as default};
