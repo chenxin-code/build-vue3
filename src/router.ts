@@ -55,6 +55,15 @@ const router = createRouter({
                 },
             ],
         },
+        {
+            path: '/404',
+            component: () => import('./page/404.vue'),
+        },
+        // 一定放最后
+        {
+            path: '/:pathMatch(.*)*',
+            redirect: '/404',
+        },
     ]
 });
 
