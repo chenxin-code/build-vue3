@@ -97,7 +97,8 @@ npx vue-tsc --noEmit
 
 ### 部署配置
 
-- `.github/workflows/deploy.yml` — GitHub Actions 工作流配置，Node 20 环境，构建使用 `npx vite build`
+- `.github/workflows/deploy.yml` — GitHub Actions 工作流配置，Node 20 环境，依赖用 `npm ci` 按 `package-lock.json` 锁定安装，构建使用 `npx vite build`
+- `package-lock.json` — 需提交到仓库，否则 CI 会按 `package.json` 的 `^` 范围重新解析版本，导致线上构建和本地不一致
 - `vite.config.ts` — `base` 根据构建命令动态设置：
   - 开发环境: `/`
   - 生产构建: `/build-vue3/`
