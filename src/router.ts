@@ -53,6 +53,10 @@ const router = createRouter({
                     path: 'sync-async-component',
                     component: () => import('./page/demo/sync-async-component.vue'),
                 },
+                {
+                    path: '3d-walk',
+                    component: () => import('./page/demo/3d-walk.vue'),
+                },
             ],
         },
         {

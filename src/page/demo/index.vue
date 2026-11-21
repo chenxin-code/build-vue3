@@ -41,6 +41,7 @@ const demoIndex = ref([
   {title: 'el-select 加载更多', path: 'selectLoadMore'},
   {title: '太阳系', path: 'solarSystem'},
   {title: '同步/异步组件测试', path: 'sync-async-component'},
+  {title: '3D空间人物走动', path: '3d-walk'},
 ]);
 
 const showArrows = ref(false);
