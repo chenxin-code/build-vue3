@@ -57,6 +57,10 @@ const router = createRouter({
                     path: '3d-walk',
                     component: () => import('./page/demo/3d-walk.vue'),
                 },
+                {
+                    path: 'pi-needle',
+                    component: () => import('./page/demo/pi-needle.vue'),
+                },
             ],
         },
         {
