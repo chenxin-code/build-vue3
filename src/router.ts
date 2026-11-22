@@ -61,6 +61,23 @@ const router = createRouter({
                     path: 'pi-needle',
                     component: () => import('./page/demo/pi-needle.vue'),
                 },
+                {
+                    path: 'maze',
+                    component: () => import('./page/demo/maze/index.vue'),
+                    // build-vue2 那边没配默认子路由，点「迷宫」会先进空白页，这里补上
+                    redirect: '/demo/maze/1',
+                    // 嵌套路由
+                    children: [
+                        {
+                            path: '1',
+                            component: () => import('./page/demo/maze/1.vue'),
+                        },
+                        {
+                            path: '2',
+                            component: () => import('./page/demo/maze/2.vue'),
+                        },
+                    ],
+                },
             ],
         },
         {

@@ -8,9 +8,9 @@
       <div class="tab-row" ref="tabRow">
         <el-button-group>
           <el-button
-              :type="$route.path === '/demo/' + item.path ? 'primary' : ''"
+              :type="isActive(item.path) ? 'primary' : ''"
               @click="$router.push({ path: '/demo/' + item.path })"
-              :disabled="$route.path === '/demo/' + item.path"
+              :disabled="isActive(item.path)"
               size="large"
               v-for="(item,index) in demoIndex"
               :key="index">
@@ -28,8 +28,11 @@
 
 <script lang="ts" setup>
 import {ref, onMounted, onBeforeUnmount} from 'vue';
+import {useRoute} from 'vue-router';
 import {ArrowLeft, ArrowRight} from '@element-plus/icons-vue';
 import {shuffle} from 'lodash';
+
+const route = useRoute();
 
 const demoIndex = ref([
   {title: '分组排序', path: 'group-order'},
@@ -43,7 +46,15 @@ const demoIndex = ref([
   {title: '同步/异步组件测试', path: 'sync-async-component'},
   {title: '3D空间人物走动', path: '3d-walk'},
   {title: '投针实验估算π', path: 'pi-needle'},
+  {title: '迷宫', path: 'maze'},
 ]);
+
+// 有子路由的 demo（如迷宫）停在 /demo/maze/1 上，只比全等就永远不会高亮
+// 注意这里必须用 useRoute()，$route 只是模板里的全局属性，script 里取不到
+const isActive = (path: string) => {
+  const base = '/demo/' + path;
+  return route.path === base || route.path.startsWith(base + '/');
+};
 
 const showArrows = ref(false);
 const tabRow = ref<HTMLElement | null>(null);
