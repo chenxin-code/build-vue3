@@ -47,6 +47,7 @@ const demoIndex = ref([
   {title: '3D空间人物走动', path: '3d-walk'},
   {title: '投针实验估算π', path: 'pi-needle'},
   {title: '迷宫', path: 'maze'},
+  {title: 'CF轮回抽奖', path: 'cf-samsara'},
 ]);
 
 // 有子路由的 demo（如迷宫）停在 /demo/maze/1 上，只比全等就永远不会高亮

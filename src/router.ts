@@ -78,6 +78,10 @@ const router = createRouter({
                         },
                     ],
                 },
+                {
+                    path: 'cf-samsara',
+                    component: () => import('./page/demo/cf-samsara.vue'),
+                },
             ],
         },
         {
