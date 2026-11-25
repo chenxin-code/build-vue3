@@ -325,11 +325,14 @@ const draw = () => {
     sweepTo(cells.indexOf(winner), () => {
         winner.drawn = true;
         lastWonId.value = winner.id;
-        busy.value = false;
-        // MessageBox 是单例，连着两次调用后者会盖掉前者，收尾提示等中奖框关掉再弹
-        tip(`抽中「${winner.name}」`, '恭喜中奖').then(() => {
-            if (finished.value) tip(`本轮 ${TOTAL} 个奖品已全部抽完，刷新页面重开一轮`, '本轮已抽完');
-        });
+        // 停格后半秒再弹框，busy 这段时间不落下来，免得连点把中奖框盖掉
+        later(() => {
+            busy.value = false;
+            // MessageBox 是单例，连着两次调用后者会盖掉前者，收尾提示等中奖框关掉再弹
+            tip(`抽中「${winner.name}」`, '恭喜中奖').then(() => {
+                if (finished.value) tip(`本轮 ${TOTAL} 个奖品已全部抽完，刷新页面重开一轮`, '本轮已抽完');
+            });
+        }, 500);
     });
 };
 
