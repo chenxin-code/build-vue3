@@ -68,7 +68,7 @@
     </div>
 
     <!-- lockScroll 关掉：默认的滚动条锁会让 body 宽度在开关时跳一下 -->
-    <el-dialog v-model="infoVisible" :title="infoMode === 'cost' ? '每抽钥匙消耗' : '当前中奖概率'" width="420px" append-to-body :lock-scroll="false">
+    <el-dialog v-model="infoVisible" :title="infoMode === 'cost' ? '每抽钥匙消耗' : '当前中奖概率'" width="min(420px, 92vw)" append-to-body :lock-scroll="false">
       <template v-if="infoMode === 'cost'">
         <p class="info-note">钥匙消耗按斐波那契递增,后一抽等于前两抽之和。</p>
         <table class="info-table">
@@ -101,7 +101,7 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="pickVisible" :title="pickCell?.groupName" width="420px" append-to-body :lock-scroll="false">
+    <el-dialog v-model="pickVisible" :title="pickCell?.groupName" width="min(420px, 92vw)" append-to-body :lock-scroll="false">
       <p class="info-note">这一格的中奖概率固定为 {{ pickCell ? oddsText(pickCell) : '' }},选择哪个奖品都不改概率。</p>
       <div class="pick-list">
         <button
@@ -447,6 +447,7 @@ const oddsRows = computed(() => cells.map(c => ({
 /* 和概率同行排在右侧，不用绝对定位：绝对定位会压住下面那行概率 */
 .picker {
   /* 按钮默认按行盒排文字，11px 字号下行盒比字形矮，字会往上偏；行盒给到 12px 再用 flex 居中才上下对称 */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -458,6 +459,13 @@ const oddsRows = computed(() => cells.map(c => ({
   border-radius: 4px;
   padding: 2px 5px;
   cursor: pointer;
+
+  /* 手机上的命中区：往外圈 8/5px 到约 43.6×33.6，不改盒子尺寸也不影响布局 */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -8px -5px;
+  }
 
   &:hover {
     border-color: #f2c14e;
@@ -508,26 +516,23 @@ const oddsRows = computed(() => cells.map(c => ({
 }
 
 .hud {
-  width: fit-content;
+  /* 430 = 两个购买按钮各 210 + 10 间隙；放不下时 auto-fit 自动堆成一列 */
+  max-width: 430px;
   margin: 0 auto 16px;
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 10px;
 
   /* 网格已经管了间距，Element 默认的相邻 margin 会让按钮错位 */
   .el-button + .el-button {
     margin-left: 0;
   }
-
-  /* 两列各按自己的文案宽度排布会一宽一窄，兜个底让两个购买按钮等长 */
-  > .el-button {
-    min-width: 210px;
-  }
 }
 
 /* 说明按钮整行居中，保持彼此 10px 的间距，不跟着上面两列被拉开 */
 .info-bar {
-  grid-column: span 2;
+  /* 1 / -1 而不是 span 2：堆成单列时 span 2 会多撑出一条隐式列 */
+  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -567,7 +572,8 @@ const oddsRows = computed(() => cells.map(c => ({
 }
 
 .draw-btn {
-  min-width: 168px;
+  /* 撑满中央区但封顶 210：写死 min-width 会把 .core 所在的两条轨道顶宽，窄屏整张轮盘就溢出 */
+  width: min(100%, 210px);
   height: 44px;
   border: none;
   border-radius: 6px;
@@ -627,7 +633,8 @@ const oddsRows = computed(() => cells.map(c => ({
 
 .pick-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 110 = 96 图 + 12 内边距 + 2 边框；420 宽放三列，手机 92vw 放不下就自动变两列 */
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 10px;
 }
 
@@ -665,7 +672,8 @@ const oddsRows = computed(() => cells.map(c => ({
 @media (max-width: 720px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 92px);
+    /* 360 视口下 Scar Light-白虎 这类长名字会换成两行：行高按最高的一行走，既不切字也不会参差不齐 */
+    grid-template-rows: repeat(4, minmax(92px, 1fr));
   }
 
   /* 92px 的行高放不下 34 图 + 名称 + 概率/选择按钮同行，高度缩到 28 才不挤掉最后一行，宽度跟着原图比例走 */
