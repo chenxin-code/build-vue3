@@ -1,0 +1,1 @@
+import{_ as e,o,c as s,D as t,E as a,a as _}from"./index-CUGeUe44.js";const d={},n=c=>(t("data-v-1bf19c1c"),c=c(),a(),c),p=n(()=>_("p",null,"404",-1)),r=[p];function f(c,l){return o(),s("div",null,r)}const u=e(d,[["render",f],["__scopeId","data-v-1bf19c1c"]]);export{u as default};
