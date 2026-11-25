@@ -176,16 +176,16 @@ const TOP_GROUPS = [
 // weight 是该档位的相对权重，抽时按剩余奖品重新归一。
 // 条数必须等于 RING.length - 2（顶级格另算），少一条 buildCells 就会读到 undefined
 const PRIZE_SEED = [
-    {id: 'p1', name: '补给箱', weight: 30, img: 'https://picsum.photos/seed/cf-p1/68/68'},
-    {id: 'p2', name: '战术投掷包', weight: 26, img: 'https://picsum.photos/seed/cf-p2/68/68'},
-    {id: 'p3', name: '精英弹匣', weight: 22, img: 'https://picsum.photos/seed/cf-p3/68/68'},
-    {id: 'p4', name: '幽灵斗篷', weight: 14, img: 'https://picsum.photos/seed/cf-p4/68/68'},
-    {id: 'p5', name: '龙鳞护符', weight: 12, img: 'https://picsum.photos/seed/cf-p5/68/68'},
-    {id: 'p6', name: '赤霄短刃', weight: 8, img: 'https://picsum.photos/seed/cf-p6/68/68'},
-    {id: 'p7', name: '玄影步枪', weight: 7, img: 'https://picsum.photos/seed/cf-p7/68/68'},
-    {id: 'p8', name: '破军狙击', weight: 4, img: 'https://picsum.photos/seed/cf-p8/68/68'},
-    {id: 'p9', name: '熔岩战靴', weight: 10, img: 'https://picsum.photos/seed/cf-p9/68/68'},
-    {id: 'p10', name: '暗影军刀', weight: 5, img: 'https://picsum.photos/seed/cf-p10/68/68'},
+  {id: 'polc19', name: '属性变更券×5', weight: 300, img: 'https://game.gtimg.cn/images/actdaoju/cp/a20261113sylyqmcf/polc19.png'},
+  {id: 'polc16', name: '交易专用钥匙×5', weight: 300, img: 'https://game.gtimg.cn/images/actdaoju/cp/a20261113sylyqmcf/polc16.png'},
+  {id: 'C0939', name: '毛瑟-天秤座', weight: 30, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C0939.png'},
+  {id: 'C0881', name: 'M240B-苍雷', weight: 30, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C0881.png'},
+  {id: 'C1188', name: '沙鹰-天神', weight: 10, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C1188.png'},
+  {id: 'C0548', name: '屠龙', weight: 8, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C0548.png'},
+  {id: 'C1283', name: 'AN94-超新星', weight: 6, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C1283.png'},
+  {id: 'C2093', name: 'AWM-裁决', weight: 4, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C2093.png'},
+  {id: 'C9482', name: 'Scar Light-白虎', weight: 2, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C9482.png'},
+  {id: 'C3351', name: 'M200-幻神', weight: 1.5, img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C3351.png'},
 ];
 
 // 12 个格子按顺时针编号，中央 2×2 留给抽奖区，所以环序不能按行优先排
