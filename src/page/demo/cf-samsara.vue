@@ -40,7 +40,7 @@
                   v-if="cell.selectable && !cell.drawn"
                   class="picker"
                   @click="openPick(cell)">
-                {{ cell.pickId ? '更换奖品' : '选择奖品' }}
+                {{ cell.pickId ? '更换' : '选择' }}
               </button>
             </div>
           </div>
@@ -51,7 +51,7 @@
           <!-- 抽完之后按钮本身已经写明状态，这行就不再占位重复一遍 -->
           <div v-if="!finished" class="cost">第 <span class="cost-num">{{ drawCount + 1 }}</span> 抽，消耗钥匙 <span class="cost-num">{{ costNow }}</span> 把</div>
           <button class="draw-btn" :disabled="!readyToDraw" @click="draw()">
-            {{ busy ? '抽奖中…' : (finished ? '本轮已抽完' : (pickedAll ? '点击抽奖' : '请先自选顶级奖励')) }}
+            {{ busy ? '抽奖中…' : (finished ? '本轮已抽完' : (pickedAll ? '点击抽奖' : '请先自选武器')) }}
           </button>
           <div class="keys">
             <span class="keys-label">剩余钥匙</span>
@@ -101,8 +101,8 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="pickVisible" title="选择顶级奖励" width="420px" append-to-body :lock-scroll="false">
-      <p class="info-note">这一格的中奖概率固定为 {{ pickCell ? oddsText(pickCell) : '' }},选哪个奖品都不改概率。</p>
+    <el-dialog v-model="pickVisible" :title="pickCell?.groupName" width="420px" append-to-body :lock-scroll="false">
+      <p class="info-note">这一格的中奖概率固定为 {{ pickCell ? oddsText(pickCell) : '' }},选择哪个奖品都不改概率。</p>
       <div class="pick-list">
         <button
             v-for="opt in pickCell?.options"
@@ -144,25 +144,33 @@ const TOTAL = 12;
 const COST_LADDER = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233];
 const START_KEYS = 0;
 
-// 两个王者格各自一组候选，互不重叠；下标和 RING 末尾两格一一对应。
-// 权重挂在组上而不是候选上：这一格的中奖概率是定死的，选哪个只换名字和图。
+// 两个自选格各自一组候选，互不重叠；下标和 RING 末尾两格一一对应。
+// 权重挂在组上而不是候选上：这一格的中奖概率是定死的，选择哪个只换名字和图。
 const TOP_GROUPS = [
-    {
-        weight: 2,
-        options: [
-            {id: 'top-a1', name: '苍穹之翼', img: 'https://picsum.photos/seed/cf-top-a1/68/68'},
-            {id: 'top-a2', name: '熔核战铠', img: 'https://picsum.photos/seed/cf-top-a2/68/68'},
-            {id: 'top-a3', name: '星陨王冠', img: 'https://picsum.photos/seed/cf-top-a3/68/68'},
-        ],
-    },
-    {
-        weight: 2,
-        options: [
-            {id: 'top-b1', name: '龙渊巨剑', img: 'https://picsum.photos/seed/cf-top-b1/68/68'},
-            {id: 'top-b2', name: '玄天战甲', img: 'https://picsum.photos/seed/cf-top-b2/68/68'},
-            {id: 'top-b3', name: '王者之心', img: 'https://picsum.photos/seed/cf-top-b3/68/68'},
-        ],
-    },
+  {
+    name: '王者武器',
+    weight: 2,
+    options: [
+      {id: 'C0748', name: '王者之心', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C0748.png'},
+      {id: 'C1446', name: '王者之翼', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C1446.png'},
+      {id: 'C0886', name: '王者之魄', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C0886.png'},
+      {id: 'C5291', name: '王者之势', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C5291.png'},
+      {id: 'C1050', name: '王者之怒', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C1050.png'},
+      {id: 'C9976', name: '王者之决', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C9976.png'},
+    ],
+  },
+  {
+    name: '传说武器',
+    weight: 1,
+    options: [
+      {id: 'C6481', name: '传说灵眸', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C6481.png'},
+      {id: 'W9024', name: '传说圣耀', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/W9024.png'},
+      {id: 'C8506', name: '传说圣灵', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C8506.png'},
+      {id: 'C6480', name: '传说幽瞳', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C6480.png'},
+      {id: 'W9026', name: '传说炽阳', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/W9026.png'},
+      {id: 'C9289', name: '传说暗裔', img: 'https://mcdn.gtimg.com/bbcdn/cf/serial/C9289.png'},
+    ],
+  },
 ];
 
 // weight 是该档位的相对权重，抽时按剩余奖品重新归一。
@@ -192,12 +200,13 @@ const buildCells = () => {
     const list = [];
     for (let i = 0; i < RING.length; i++) {
         const [r, c] = RING[i];
-        // 最后两格是王者格：概率一开始就定死，只是还没决定放哪个奖品
+        // 最后两格是自选格：概率一开始就定死，只是还没决定放哪个奖品
         if (i >= RING.length - 2) {
             const group = TOP_GROUPS[i - (RING.length - 2)];
             list.push(reactive({
                 id: 'top-slot-' + i, row: r, col: c,
-                name: '顶级奖励', weight: group.weight, img: null,
+                name: group.name, groupName: group.name,
+                weight: group.weight, img: null,
                 selectable: true, pickId: null, options: group.options,
                 drawn: false,
             }));
@@ -396,11 +405,11 @@ const oddsRows = computed(() => cells.map(c => ({
   text-align: center;
 }
 
-/* 34×34 固定占位，图换了或挂了都不影响格子高度 */
+/* 官方道具图是 675×300 的横图，框按比例放宽并用 contain，整张图才不会被裁掉 */
 .pic {
-  width: 34px;
+  width: 76px;
   height: 34px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 4px;
   background: #241f18;
 }
@@ -434,13 +443,17 @@ const oddsRows = computed(() => cells.map(c => ({
 
 /* 和概率同行排在右侧，不用绝对定位：绝对定位会压住下面那行概率 */
 .picker {
+  /* 按钮默认按行盒排文字，11px 字号下行盒比字形矮，字会往上偏；行盒给到 12px 再用 flex 居中才上下对称 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 11px;
-  line-height: 1.2;
+  line-height: 12px;
   background: #201b15;
   color: #d9cfae;
   border: 1px solid #55472f;
   border-radius: 4px;
-  padding: 1px 5px;
+  padding: 2px 5px;
   cursor: pointer;
 
   &:hover {
@@ -627,8 +640,8 @@ const oddsRows = computed(() => cells.map(c => ({
   cursor: pointer;
 
   .pic {
-    width: 48px;
-    height: 48px;
+    width: 96px;
+    height: 43px;
   }
 
   &:hover {
@@ -652,9 +665,9 @@ const oddsRows = computed(() => cells.map(c => ({
     grid-template-rows: repeat(4, 92px);
   }
 
-  /* 92px 的行高放不下 34 图 + 名称 + 概率/选择按钮同行，缩到 28 才不挤掉最后一行 */
+  /* 92px 的行高放不下 34 图 + 名称 + 概率/选择按钮同行，高度缩到 28 才不挤掉最后一行，宽度跟着原图比例走 */
   .cell .pic {
-    width: 28px;
+    width: 63px;
     height: 28px;
   }
 }
