@@ -278,22 +278,28 @@ const pickWinner = () => {
 };
 
 /**
- * 跑马灯：绕一圈落到目标格，前面匀速，最后 5 步逐级拉开间隔做「减速停格」。
- * 最后一次 tick 落在 step === steps 上，所以 steps 直接取「整圈 + 目标下标」，
+ * 跑马灯：从上一次停下的格子接着转，随机连转 1～4 圈落到目标格，
+ * 前面匀速，最后随机 5～8 步逐级拉开间隔做「减速停格」。
+ * 最后一次 tick 落在 step === steps 上，所以 steps 直接取「圈数 × 整圈 + 起点的环距」，
  * 多算一格灯就会停在中奖格的下一格。
  */
 const sweepTo = (targetIndex, done) => {
-    const steps = RING.length + targetIndex;
+    const laps = 1 + Math.floor(Math.random() * 4);
+    const from = sweepIndex.value < 0 ? 0 : sweepIndex.value;
+    const dist = (targetIndex - from + RING.length) % RING.length;
+    const steps = RING.length * laps + dist;
+    // 刹车距离也随机，但兜一道：圈少时别把整趟都变成减速
+    const brake = Math.min(5 + Math.floor(Math.random() * 4), steps - 3);
     let step = 0;
     const tick = () => {
-        sweepIndex.value = step % RING.length;
+        sweepIndex.value = (from + step) % RING.length;
         step++;
         if (step > steps) {
             done();
             return;
         }
         const left = steps - step;
-        later(tick, left > 5 ? 50 : 50 + (5 - left) * 45);
+        later(tick, left > brake ? 50 : 50 + (brake - left) * 45);
     };
     tick();
 };
