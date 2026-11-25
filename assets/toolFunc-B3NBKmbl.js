@@ -1,0 +1,1 @@
+import{h as o,L as u}from"./index-BrI7j7pR.js";function f(r=999){const e=o(0);let n;const a=()=>{e.value++,e.value<r&&(n=requestAnimationFrame(a))};return a(),u(()=>{cancelAnimationFrame(n)}),function(t){return e.value>=t}}export{f as d};
