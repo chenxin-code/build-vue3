@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-divider>DEMO</el-divider>
-    <div class="tab-container">
+    <el-divider :style="hideStyle">DEMO</el-divider>
+    <div class="tab-container" :style="hideStyle">
       <div class="arrow-left" v-if="showArrows" @click="scrollLeft">
         <el-icon><ArrowLeft /></el-icon>
       </div>
@@ -27,12 +27,17 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, onMounted, onBeforeUnmount} from 'vue';
+import {ref, computed, onMounted, onBeforeUnmount} from 'vue';
 import {useRoute} from 'vue-router';
 import {ArrowLeft, ArrowRight} from '@element-plus/icons-vue';
 import {shuffle} from 'lodash';
 
 const route = useRoute();
+
+// /demo/cf-samsara?showLayman=1 时隐掉标题分隔线和导航条；用 visibility 不用 display，
+// 是为了保留原有占位，页面布局不跟着往上跳
+const isLayman = computed(() => route.path === '/demo/cf-samsara' && route.query.showLayman === '1');
+const hideStyle = computed(() => ({visibility: isLayman.value ? 'hidden' : ''}));
 
 const demoIndex = ref([
   {title: '分组排序', path: 'group-order'},
