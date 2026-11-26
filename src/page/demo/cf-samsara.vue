@@ -39,6 +39,7 @@
               <button
                   v-if="cell.selectable && !cell.drawn"
                   class="picker"
+                  :disabled="busy"
                   @click="openPick(cell)">
                 {{ cell.pickId ? '更换' : '选择' }}
               </button>
@@ -320,6 +321,8 @@ const draw = () => {
         return;
     }
     busy.value = true;
+    // 上一轮的中奖高亮一开抽就收掉：留着的话转圈期间它会一直是金色，看不出已经出池
+    lastWonId.value = '';
     keys.value -= costNow.value;
     const winner = pickWinner();
     sweepTo(cells.indexOf(winner), () => {
@@ -467,7 +470,13 @@ const oddsRows = computed(() => cells.map(c => ({
     inset: -8px -5px;
   }
 
-  &:hover {
+  /* 转圈期间锁定：中奖格已经定死，这时候还能换奖品就说不通了 */
+  &:disabled {
+    cursor: default;
+    opacity: 0.45;
+  }
+
+  &:not(:disabled):hover {
     border-color: #f2c14e;
     color: #ffd97a;
   }
@@ -572,8 +581,11 @@ const oddsRows = computed(() => cells.map(c => ({
 }
 
 .draw-btn {
-  /* 撑满中央区但封顶 210：写死 min-width 会把 .core 所在的两条轨道顶宽，窄屏整张轮盘就溢出 */
-  width: min(100%, 210px);
+  /* 撑满中央区但封顶 210：写死 min-width 会把 .core 所在的两条轨道顶宽，窄屏整张轮盘就溢出。
+     减 24 是留左右各 12 的边距，不然手机上按钮会顶满整个中央区；
+     别写成 min(100% - 24px, 210px)：Less 会把 min() 当自己的函数先算成 76% */
+  width: calc(100% - 24px);
+  max-width: 210px;
   height: 44px;
   border: none;
   border-radius: 6px;
